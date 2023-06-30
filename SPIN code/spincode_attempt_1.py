@@ -18,8 +18,8 @@ if __name__ == "__main__":
     
     K_u = 5       #uniaxial anisotropy coefficient
     H = 5   #applied field, we will be either using this as a constant or sweeping it
-    theta_u = 0  #angle between the applied field and the uniaxial anisotropy
-    theta_m = 0 #angle between magnetisation and the applied field?
+    phi = 0  #angle between the applied field and the uniaxial anisotropy
+    theta = 0 #angle between magnetisation and the applied field?
     M = 1 # magentisation of the sample
     """
     naming of equations / terms
