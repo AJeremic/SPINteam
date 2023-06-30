@@ -20,7 +20,7 @@ if __name__ == "__main__":
     H = 5   #applied field, we will be either using this as a constant or sweeping it
     theta_u = 0  #angle between the applied field and the uniaxial anisotropy
     theta_m = 0 #angle between magnetisation and the applied field?
-    M =  # magentisation of the sample
+    M = 1 # magentisation of the sample
     """
     naming of equations / terms
 
