@@ -17,10 +17,12 @@ if __name__ == "__main__":
     
     
     K_u = 5       #uniaxial anisotropy coefficient
-    H = 5   #applied field, we will be either using this as a constant or sweeping it
+    r = 5 #magnitude of the applied field
+    H = np.array([r*np.cos(theta),r*np.sin(theta)])   #applied field, we will be either using this as a constant or sweeping it
     phi = 0  #angle between the applied field and the uniaxial anisotropy
     theta = 0 #angle between magnetisation and the applied field?
-    M = 1 # magentisation of the sample
+    M = 1 # magintude of the magentisation of the sample
+    Magn = np.array([M*np.cos(phi),M*np.sin(phi)])
     """
     naming of equations / terms
 
