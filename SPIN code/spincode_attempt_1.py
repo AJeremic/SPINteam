@@ -22,11 +22,11 @@ if __name__ == "__main__":
     r = 5 #magnitude of the applied field
     
     phi = 0  #angle between the applied field and the uniaxial anisotropy
-    
+  
     M = 1 # magintude of the magentisation of the sample
     Magn = np.array([M*np.cos(phi),M*np.sin(phi)]) # magnetisation as a vector
     H = np.array([r*np.cos(theta),r*np.sin(theta)])   #applied field, we will be either using this as a constant or sweeping it
-    
+    # possible theta/phi changing scenario  theta = np.linspace(0:360:5)
     
     """
     naming of equations / terms
