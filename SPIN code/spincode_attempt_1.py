@@ -24,9 +24,9 @@ if __name__ == "__main__":
     theta_r = np.array(theta)
     theta_r *= np.pi/180
    
-    K_u = 1100000       #uniaxial anisotropy coefficient
-    r = 5 #magnitude of the applied field
-    print(theta_r)
+    K_u = 110000       #uniaxial anisotropy coefficient
+    r = 50000 #magnitude of the applied field
+    #print(theta_r)
     phi = 0  #angle between the applied field and the uniaxial anisotropy
   
     M = 1 # magintude of the magentisation of the sample
@@ -34,19 +34,19 @@ if __name__ == "__main__":
     H = np.array([r*np.cos(theta_r),r*np.sin(theta_r)])   #applied field, we will be either using this as a constant or sweeping it
     # possible theta/phi changing scenario  theta = np.linspace(0:360:5)
     E_total = []
+    desc = 0
     """
     naming of equations / terms
 
     """
     for i in range(len(theta)):
         #print(i)
-        if ((theta_r[i])%(np.pi/2) == 0 and theta_r[i] - 180 < 0):
-            phi = 90
+        if ((theta_r[i])%(np.pi/2) == 0 and theta_r[i] - np.pi != 0 and theta_r[i] != 0):
             desc = 1
-        if ((theta_r[i])%(np.pi/2) == 0 and theta_r[i] - 180 == 0):
+        if ((theta_r[i])%(np.pi/2) == 0 and theta_r[i] - np.pi == 0):
             phi = 0
             desc = 0
-    
+        print(phi)
         E_1 = K_u*(np.sin(theta_r[i]))**2
         E_2 = r*M*np.cos(phi*np.pi/180)
         
