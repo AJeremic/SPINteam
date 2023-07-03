@@ -24,7 +24,7 @@ if __name__ == "__main__":
     theta_r = np.array(theta)
     theta_r *= np.pi/180
    
-    K_u = 110000       #uniaxial anisotropy coefficient
+    K_u = 110000000       #uniaxial anisotropy coefficient
     r = 50000 #magnitude of the applied field
     #print(theta_r)
     phi = 0  #angle between the applied field and the uniaxial anisotropy
@@ -56,6 +56,12 @@ if __name__ == "__main__":
             phi-=5
         else:
             phi+=5
+            
+            
+    """
+    plotting
+    
+    """
     plt.plot(theta_r,E_total)
     plt.title("energy")
     plt.show()
