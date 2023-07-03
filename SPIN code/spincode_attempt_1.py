@@ -17,10 +17,10 @@ if __name__ == "__main__":
     
     """
     i = 0
-    theta = [0.0]
+    theta = [0.]
     for j in range(72): 
         i +=5
-        theta.append(float(i)) #angle between magnetisation and the applied field?
+        theta.append(i) #angle between magnetisation and the applied field?
         
     theta *= np.pi/180
     K_u = 1100000       #uniaxial anisotropy coefficient
@@ -39,7 +39,7 @@ if __name__ == "__main__":
     """
     for i in range(len(theta)):
         #print(i)
-        if ((theta[i])%90 == 0 and theta[i] - 180 < 0):
+        if ((theta[i])%(np.pi/2) == 0 and theta[i] - 180 < 0):
             phi = 90
             desc = 1
         if ((theta[i])%90 == 0 and theta[i] - 180 == 0):
