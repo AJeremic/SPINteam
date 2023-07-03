@@ -5,7 +5,7 @@ Created on Fri Jun 30 00:38:00 2023
 @author: jerem
 """
 
-import matplotlib as plt
+from matplotlib import pyplot as plt
 import numpy as np
 
 
@@ -16,30 +16,46 @@ if __name__ == "__main__":
     naming of variables
     
     """
-    
-    theta = 0 #angle between magnetisation and the applied field?
-    K_u = 5       #uniaxial anisotropy coefficient
+    i = 0
+    theta = [0]
+    for j in range(72): 
+        i +=5
+        theta.append(i) #angle between magnetisation and the applied field?
+    K_u = 1100000       #uniaxial anisotropy coefficient
     r = 5 #magnitude of the applied field
-    
+    #print(theta)
     phi = 0  #angle between the applied field and the uniaxial anisotropy
   
     M = 1 # magintude of the magentisation of the sample
     Magn = np.array([M*np.cos(phi),M*np.sin(phi)]) # magnetisation as a vector
     H = np.array([r*np.cos(theta),r*np.sin(theta)])   #applied field, we will be either using this as a constant or sweeping it
     # possible theta/phi changing scenario  theta = np.linspace(0:360:5)
-    
+    E_total = []
     """
     naming of equations / terms
 
     """
+    for i in range(len(theta)):
+        #print(i)
+        if ((theta[i])%90 == 0 and theta[i] - 180 < 0):
+            phi = 90
+            desc = 1
+        if ((theta[i])%90 == 0 and theta[i] - 180 == 0):
+            phi = 0
+            desc = 0
     
-    
-    E_1 = K_u*(np.sin(theta))**2
-    E_2 = H*Magn*np.cos(phi)
-    E_total = E_1 + E_2
-    
-    plt.plot(E_total, theta)
-    plt.title("energy at value %d" , theta)
+        E_1 = K_u*(np.sin(theta[i]))**2
+        E_2 = r*M*np.cos(phi)
+        
+        E_total.append(int(E_1 + E_2))
+        #print(theta[i])
+        if desc:
+            phi-=5
+        else:
+            phi+=5
+    plt.plot( theta,E_total)
+    plt.title("energy")
     plt.show()
+    
     
     
