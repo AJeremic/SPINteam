@@ -2,6 +2,7 @@
 """
 Created on Fri Jun 30 00:38:00 2023
     attempt 1 of creating spin energy level graph
+    one spin energy
 @author: jerem
 """
 
@@ -24,7 +25,7 @@ if __name__ == "__main__":
     theta_r = np.array(theta)
     theta_r *= np.pi/180
    
-    K_u = 110000000       #uniaxial anisotropy coefficient
+    K_u = 1100000       #uniaxial anisotropy coefficient
     r = 50000 #magnitude of the applied field
     #print(theta_r)
     phi = 0  #angle between the applied field and the uniaxial anisotropy
@@ -39,6 +40,8 @@ if __name__ == "__main__":
     naming of equations / terms
 
     """
+    #print(theta_r)
+    
     for i in range(len(theta)):
         #print(i)
         if ((theta_r[i])%(np.pi/2) == 0 and theta_r[i] - np.pi != 0 and theta_r[i] != 0):
@@ -46,12 +49,13 @@ if __name__ == "__main__":
         if ((theta_r[i])%(np.pi/2) == 0 and theta_r[i] - np.pi == 0):
 
             desc = 0
-        print(phi)
+        #print(phi)
         E_1 = K_u*(np.sin(phi*np.pi/180))**2
         E_2 = r*M*np.cos(theta_r[i])
+        print(phi)
         
         E_total.append(int(E_1 + E_2))
-        print(theta_r[i])
+        #print(theta_r[i])
         if desc:
             phi-=5
         else:
@@ -62,8 +66,11 @@ if __name__ == "__main__":
     plotting
     
     """
+    
     plt.plot(theta_r,E_total)
     plt.title("energy")
+    plt.xlabel("Radians")
+    plt.ylabel("energy in J/m^3")
     plt.show()
     
     
