@@ -44,11 +44,11 @@ if __name__ == "__main__":
         if ((theta_r[i])%(np.pi/2) == 0 and theta_r[i] - np.pi != 0 and theta_r[i] != 0):
             desc = 1
         if ((theta_r[i])%(np.pi/2) == 0 and theta_r[i] - np.pi == 0):
-            phi = 0
+
             desc = 0
         print(phi)
-        E_1 = K_u*(np.sin(theta_r[i]))**2
-        E_2 = r*M*np.cos(phi*np.pi/180)
+        E_1 = K_u*(np.sin(phi*np.pi/180))**2
+        E_2 = r*M*np.cos(theta_r[i])
         
         E_total.append(int(E_1 + E_2))
         print(theta_r[i])
