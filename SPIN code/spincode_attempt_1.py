@@ -25,8 +25,8 @@ if __name__ == "__main__":
     theta_r = np.array(theta)
     theta_r *= np.pi/180
    
-    K_u = 1100000       #uniaxial anisotropy coefficient
-    r = 50000 #magnitude of the applied field
+    K_u = 110000       #uniaxial anisotropy coefficient
+    r = 0 #magnitude of the applied field
     #print(theta_r)
     phi = 0  #angle between the applied field and the uniaxial anisotropy
   
@@ -41,20 +41,35 @@ if __name__ == "__main__":
 
     """
     #print(theta_r)
+    """
+    cubic anisotropy code
+    K_1 = xx
+    if ((theta_r[i])%(np.pi/4) == 0 and theta_r[i] - np.pi/2 != 0 and theta_r[i] != 0):
+        desc = 1
+    if ((theta_r[i])%(np.pi/4) == 0 and theta_r[i] - np.pi/2 == 0):
+        desc = 0
+        
+        E_2 = 1/8*K_1*np.sin(2*phi*np.pi/180)**2
     
+    """
     for i in range(len(theta)):
         #print(i)
         if ((theta_r[i])%(np.pi/2) == 0 and theta_r[i] - np.pi != 0 and theta_r[i] != 0):
             desc = 1
         if ((theta_r[i])%(np.pi/2) == 0 and theta_r[i] - np.pi == 0):
-
             desc = 0
         #print(phi)
-        E_1 = K_u*(np.sin(phi*np.pi/180))**2
-        E_2 = r*M*np.cos(theta_r[i])
+        E_1 = K_u*(np.sin(phi*np.pi/180-(np.pi/4)))**2
+        print(E_1)
+
+        print("next line is phi")
         print(phi)
+        print(phi*np.pi/180)
+        E_2 = r*M*np.cos(theta_r[i])
+        #print(phi)
         
         E_total.append(int(E_1 + E_2))
+        
         #print(theta_r[i])
         if desc:
             phi-=5
@@ -67,6 +82,8 @@ if __name__ == "__main__":
     
     """
     
+    a = np.amin(E_total)
+    print(a)
     plt.plot(theta_r,E_total)
     plt.title("energy")
     plt.xlabel("Radians")
