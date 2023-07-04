@@ -26,7 +26,12 @@ def peaksandtroughs(array):
     locationmax *= 5
     locationmin *= 5
     return locationmax, locationmin, countmax, countmin
-
+def globalmin(locationmin,E_total):
+    globmin = np.array([int(E_total[locationmin[0]])])
+    for minima in locationmin:
+        if E_total[minima] < globalmin[0]:
+            globalmin[0] = E_total[minima]
+    return globmin
 if __name__ == "__main__":
     
     x = int(input("what starting angle do you want"))
@@ -34,6 +39,7 @@ if __name__ == "__main__":
     naming of variables
     
     """
+    globmin = np.array([])
     locationmax = np.array([])
     locationmin = np.array([])
     countmax = 0
@@ -91,29 +97,20 @@ if __name__ == "__main__":
     for i in range(len(theta_r)):
         #print(i)
         if ((theta_r[i])%(np.pi/2) == 0 and (theta_r[i]) != np.pi and (theta_r[i]) != 0):
-            desc = 1
+            desc = 1#determing the increment or decrement of the phi for the uniaxial anisotropy
         elif (theta_r[i]%(np.pi/2) == 0 and ((theta_r[i])  == np.pi or theta_r[i] == 0)):
             desc = 0
         #print(phi)
         E_uni_1 = K_u_1*(np.sin((phi*np.pi/180)))**2
         #E_uni_2 = K_u_2*(np.sin((phi*np.pi/180)))**2
 
-        #print(E_1)
-       # print("next line is phi")
-       # print(phi)
-      #  print(theta_r[i]*180/np.pi)
-       # print("theta")
-       # print(theta_r[i]*180/np.pi)
-        #print(phi*np.pi/180)
-        #print(np.gradient(theta)
-        #print("                                                                ")
+        
         E_spin_1 = r*M_1*np.cos(theta_r[i])
         E_spin_2 = r*M_2*np.cos(np.pi-theta_r[i])
-        #print(phi)
+        
 
         E_total = np.append(E_total,int(E_spin_1+E_spin_2+E_uni_1))
-        #print(E_total)
-        #print(theta_r[i])
+
         if desc:
             phi-=5
         else:
@@ -129,8 +126,9 @@ if __name__ == "__main__":
     
     print(locationmax)
     print(locationmin)
+    globmin = globalmin(locationmin,E_total)
+    print(globmin)
     
-
     plt.plot(graphing_t,E_total)
     plt.title("energy")
     plt.xlabel("Radians")
