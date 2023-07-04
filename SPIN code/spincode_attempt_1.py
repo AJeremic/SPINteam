@@ -34,7 +34,7 @@ if __name__ == "__main__":
     graphing_t.rotate(splice_const)
     
     K_u = 110000       #uniaxial anisotropy coefficient
-    r = 100000 #magnitude of the applied field
+    r = 0 #magnitude of the applied field
     #print(theta_r)
     phi = x%90  #angle between the applied field and the uniaxial anisotropy
   
@@ -75,8 +75,8 @@ if __name__ == "__main__":
 
         #print(E_1)
        # print("next line is phi")
-        print(phi)
-        print(theta_r[i]*180/np.pi)
+       # print(phi)
+      #  print(theta_r[i]*180/np.pi)
        # print("theta")
        # print(theta_r[i]*180/np.pi)
         #print(phi*np.pi/180)
